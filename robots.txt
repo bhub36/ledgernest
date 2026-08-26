@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /dl/
+Disallow: /files/LedgerNest-Etsy-Seller-Bookkeeping.zip
+Disallow: /files/LedgerNest-Freelancer-Finance-System.zip
+Disallow: /files/LedgerNest-Cleaning-Business-Pack.zip
