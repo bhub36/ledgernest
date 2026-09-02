@@ -20,4 +20,18 @@
 <div><b style="color:#fff">LedgerNest</b> — finance &amp; ops templates for tiny businesses.<br>Questions? <a href="mailto:hello@getledgernest.com">hello@getledgernest.com</a></div>
 <div>© 2026 LedgerNest • <a href="terms.html">Terms &amp; license</a><br>Templates are planning tools, not tax, legal or accounting advice.</div>
 </div></footer>
+<script src="js/posthog.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(!window.posthog) return;
+  document.querySelectorAll('a.btn[download], a[download]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var href=a.getAttribute('href')||'';
+      var name=href.split('/').pop()||'download';
+      posthog.capture('free_cta_click',{cta:name, page:'free-etsy-fee-cheat-sheet.html'});
+    });
+  });
+});
+</script>
+
 </body></html>
