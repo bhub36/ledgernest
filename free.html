@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Free Etsy Fee Cheat Sheet (2026) — LedgerNest</title><meta name="description" content="Every fee Etsy charges in 2026 with real math — free PDF, no email required.">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪺</text></svg>">
 </head><body>
 <header><div class="container nav">
@@ -9,12 +9,16 @@
 <nav class="nav-links"><a href="index.html#products">Templates</a><a href="blog/index.html">Guides</a><a href="free.html">Free cheat sheet</a></nav>
 </div></header>
 
-<div class="container" style="max-width:680px;text-align:center;padding:80px 24px">
+<div id="free-downloads" class="container" style="max-width:680px;text-align:center;padding:80px 24px">
 <h1 style="color:var(--green);margin-bottom:14px">The Etsy Fee Cheat Sheet (2026)</h1>
 <p style="color:var(--grey);margin-bottom:8px">Every fee Etsy charges, a worked $48-order example showing where 10–25% of your money goes, and the pricing rule that protects your margin. Free, no email required.</p>
 <p style="margin:26px 0"><a class="btn amber" style="font-size:1.15rem" href="files/LedgerNest-Etsy-Fee-Cheat-Sheet-2026.pdf" download>⬇ Download the free PDF</a></p>
-<p class="small">Want the version that does the math for you on every real order?<br>
-<a href="products/etsy-seller-bookkeeping.html">See the Etsy Seller Bookkeeping &amp; Profit Tracker →</a></p>
+<div id="tripwire" style="margin:48px 0 16px;padding:28px 20px;border:1px solid rgba(0,0,0,.1);border-radius:16px;background:rgba(0,0,0,.02);text-align:center">
+<h2 style="margin:0 0 10px;font-size:1.35rem">Ready for every real order?</h2>
+<p style="color:var(--grey);margin:0 0 20px;font-size:1.05rem">Etsy Seller Bookkeeping &amp; Profit Tracker — know your real profit after every Etsy fee. $29 one-time, Google Sheets + Excel.</p>
+<p style="margin:0 0 14px"><a class="btn amber" style="font-size:1.1rem" id="tripwire-buy" href="https://buy.stripe.com/5kQ14n8P9fI5frNcq9g7e0g">Get Etsy Bookkeeping — $29</a></p>
+<p class="small" style="margin:0"><a href="#free-downloads" id="tripwire-skip">No thanks, just the free tools</a> · <a href="products/etsy-seller-bookkeeping.html">See inside</a></p>
+</div>
 </div>
 <footer><div class="container foot-grid">
 <div><b style="color:#fff">LedgerNest</b> — finance &amp; ops templates for tiny businesses.<br>Questions? <a href="mailto:hello@getledgernest.com">hello@getledgernest.com</a></div>
@@ -23,15 +27,25 @@
 <script src="js/posthog.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-  if(!window.posthog) return;
+  function capture(event, props){
+    if(!window.posthog) return;
+    posthog.capture(event, props||{});
+  }
   document.querySelectorAll('a.btn[download], a[download]').forEach(function(a){
     a.addEventListener('click',function(){
       var href=a.getAttribute('href')||'';
       var name=href.split('/').pop()||'download';
-      posthog.capture('free_cta_click',{cta:name, page:'free.html'});
+      capture('free_cta_click',{cta:name, page:'free.html'});
     });
   });
+  var buy=document.getElementById('tripwire-buy');
+  if(buy){
+    buy.addEventListener('click',function(){
+      var href=buy.getAttribute('href')||'';
+      capture('tripwire_cta_click',{cta:'tripwire_buy', product:buy.textContent.trim(), page:'free.html'});
+      capture('stripe_click',{cta:'tripwire', href:href, page:'free.html'});
+    });
+  }
 });
 </script>
-
 </body></html>
