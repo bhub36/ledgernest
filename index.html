@@ -13,7 +13,7 @@
 <h1>Spreadsheets &amp; templates that run the money side of your tiny business</h1>
 <p>Start free with the Etsy Fee Cheat Sheet — no email. When you need the full trackers, the templates are ready below.</p>
 <div class="badge-row"><span class="chip">Free cheat sheet, no email</span><span class="chip">Google Sheets + Excel</span><span class="chip">One-time paid templates</span><span class="chip">Free updates forever</span></div>
-<a class="btn amber" href="free.html">Get the free cheat sheet</a>
+<a class="btn amber" id="free-hero" href="free.html">Get the free cheat sheet</a>
 <p style="margin-top:16px;color:var(--grey)"><a href="#products">Browse the templates ↓</a></p>
 </section>
 <section id="products" class="section alt"><div class="container">
@@ -36,11 +36,30 @@
 </div>
 <div class="cta-band"><h2>Not sure yet? Start free.</h2>
 <p>The Etsy Fee Cheat Sheet (2026): every fee Etsy charges, a worked example, and the pricing rule that protects your margin.</p>
-<a class="btn amber" href="free.html">Get the free cheat sheet</a></div>
+<a class="btn amber" id="free-band" href="free.html">Get the free cheat sheet</a></div>
 </div></section>
 <footer><div class="container foot-grid">
 <div><b style="color:#fff">LedgerNest</b> — finance &amp; ops templates for tiny businesses.<br>Questions? <a href="mailto:hello@getledgernest.com">hello@getledgernest.com</a></div>
 <div>© 2026 LedgerNest • <a href="terms.html">Terms &amp; license</a><br>Templates are planning tools, not tax, legal or accounting advice.</div>
 </div></footer>
 <script src="js/posthog.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  function track(a, cta){
+    if(!a) return;
+    a.addEventListener('click',function(e){
+      var href=a.getAttribute('href')||'';
+      if(window.posthog){
+        posthog.capture('free_cta_click',{cta:cta, href:href, page:'index.html'});
+      }
+      if(href && href.charAt(0)!=='#' && !a.hasAttribute('download')){
+        e.preventDefault();
+        setTimeout(function(){ window.location.href=href; }, 180);
+      }
+    });
+  }
+  track(document.getElementById('free-hero'), 'hero_free');
+  track(document.getElementById('free-band'), 'band_free');
+});
+</script>
 </body></html>
